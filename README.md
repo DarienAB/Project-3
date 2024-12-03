@@ -1,2 +1,2 @@
 # Project-3
-CSC 2053 002: This is our final project of our class. 
+This is Villanova's version of the Facebook Marketplace. However, our name is V-Pop.
