@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/wildcat.ico" />
+    
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="css/CreateAccountPage.css">
+</head>
+<body>
+    <div class="create-account-container">
+        <div class="create-account-box">
+            <h2>Create Account</h2>
+
+            <form id="create-account-form">
+                <!-- First Name and Last Name -->
+                <div class="input-container">
+                    <input type="text" id="first-name" placeholder="First Name" required />
+                    <input type="text" id="last-name" placeholder="Last Name" required />
+                </div>
+
+                <!-- Age -->
+                <div class="input-container">
+                    <input type="number" id="age" placeholder="Age" required min="18" />
+                </div>
+
+                <!-- Gender -->
+                <div class="input-container">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Major and Minors -->
+                <div class="input-container">
+                    <input type="text" id="major" placeholder="Major" required />
+                    <input type="text" id="minors" placeholder="Minors (optional)" />
+                </div>
+
+                <!-- Email -->
+                <div class="input-container">
+                    <input type="email" id="email" placeholder="Email" required />
+                </div>
+
+                <!-- Password and Confirm Password -->
+                <div class="input-container">
+                    <input type="password" id="password" placeholder="Password" required />
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+                </div>
+
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script type="module">
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBGpja9qxVf16ukY7Hj0Namz_9GshdCjDw",
+            authDomain: "project-3-a37d4.firebaseapp.com",
+            projectId: "project-3-a37d4",
+            storageBucket: "project-3-a37d4.appspot.com",
+            messagingSenderId: "1031900863460",
+            appId: "1:1031900863460:web:028f2f8478862f968c85f1",
+            measurementId: "G-R86DWKXVM6"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth(app);
+        const db = firebase.firestore(app);
+
+        // Create Account Form Submission
+        document.getElementById('create-account-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Get values from the form
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const major = document.getElementById('major').value;
+            const minors = document.getElementById('minors').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
+
+            try {
+                // Create a new user with Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Save user data to Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    firstName: firstName,
+                    lastName: lastName,
+                    age: age,
+                    gender: gender,
+                    major: major,
+                    minors: minors,
+                    email: email,
+                    createdAt: new Date()
+                });
+
+                // Redirect to the login page after account creation
+                window.location.href = 'Login.html'; // Or any page you want to redirect to after creating the account
+
+            } catch (error) {
+                console.error('Error creating account:', error);
+                alert(error.message); // Show error message
+            }
+        });
+    </script>
+</body>
+</html>

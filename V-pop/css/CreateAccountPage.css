@@ -1,0 +1,97 @@
+/* General Body Styling */
+body {
+    background-image: url('../assets/villanovachurch.jpg'); /* Path from css folder to assets folder */
+    background-size: cover; /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* This color will show if the image doesn't cover the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the Create Account Box */
+.create-account-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency for the background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Styling the Create Account Box */
+.create-account-box {
+    padding: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Container Styling */
+.input-container {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Input Field Styling */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+/* Button Styling */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Label Styling */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+    .create-account-container {
+        padding: 15px;
+    }
+
+    .input-container {
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px;
+    }
+}
