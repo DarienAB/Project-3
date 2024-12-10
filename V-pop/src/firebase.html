@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/Login.css">
-    <link rel="icon" type="image/x-icon" href="assets/wildcat.ico" />
-</head>
-<body>
-    
-    <div class="login-container">
-        <div class="login-box">
-            <h2>LOGIN</h2>
-            <p id="error-message" class="error" style="display: none;">Failed to log in. Please check your credentials.</p>
-
-            <form id="login-form">
-                <div class="input-container">
-                    <input type="email" id="email" placeholder="Email" required />
-                    <input type="password" id="password" placeholder="Password" required />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-
-            <p class="new-user-text">
-                New user? 
-                <a href="CreateAccountPage.html" class="create-account-link">Create Profile Here!</a>
-            </p>
-        </div>
-    </div>
-
-    <!-- Firebase Integration -->
+<!-- Firebase Integration -->
     <script type="module">
         // Import Firebase Authentication
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
