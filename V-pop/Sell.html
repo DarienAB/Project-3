@@ -139,7 +139,6 @@
         </div>
     </footer>
 
-<<<<<<< HEAD
 <!-- Firebase Scripts -->
 <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
@@ -207,79 +206,5 @@
 
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-=======
-    <!-- Firebase and Form Handling -->
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBGpja9qxVf16ukY7Hj0Namz_9GshdCjDw",
-            authDomain: "project-3-a37d4.firebaseapp.com",
-            projectId: "project-3-a37d4",
-            storageBucket: "project-3-a37d4.firebasestorage.app",
-            messagingSenderId: "1031900863460",
-            appId: "1:1031900863460:web:028f2f8478862f968c85f1"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
-        document.getElementById("sellForm").addEventListener("submit", async function(e) {
-            e.preventDefault();
-
-            const title = document.getElementById("productTitle").value;
-            const price = document.getElementById("productPrice").value;
-            const description = document.getElementById("productDescription").value;
-            const category = document.getElementById("productCategory").value;
-            const condition = document.querySelector('input[name="condition"]:checked').value;
-            const images = document.getElementById("productImage").files;
-
-            if (!title || !price || !description || !category || !condition || images.length === 0) {
-                alert("Please fill out all fields and upload at least one image.");
-                return;
-            }
-
-            // Upload images to Firebase Storage
-            const imagePromises = [];
-            for (let i = 0; i < images.length; i++) {
-                const imageRef = ref(storage, "product_images/" + images[i].name);
-                imagePromises.push(uploadBytes(imageRef, images[i]));
-            }
-
-            try {
-                const imageSnapshots = await Promise.all(imagePromises);
-                const imageUrls = [];
-                for (const snapshot of imageSnapshots) {
-                    const imageUrl = await getDownloadURL(snapshot.ref);
-                    imageUrls.push(imageUrl);
-                }
-
-                // Add product data to Firestore
-                await addDoc(collection(db, "products"), {
-                    title,
-                    price,
-                    description,
-                    category,
-                    condition,
-                    images: imageUrls,
-                    timestamp: serverTimestamp(),
-                });
-
-                alert("Product listed successfully!");
-                document.getElementById("sellForm").reset();
-            } catch (error) {
-                console.error("Error uploading images or adding product: ", error);
-                alert("Error uploading images or listing product. Please try again.");
-            }
-        });
-    </script>
->>>>>>> 931aa6d (updateb)
 </body>
 </html>
