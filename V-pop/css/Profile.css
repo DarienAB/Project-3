@@ -1,0 +1,107 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-image: url('../assets/villanovachurch.jpg'); /* Path from css folder to assets folder */
+    background-size: cover; /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6; /* This color will show if the image doesn't cover the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Profile container */
+.profile-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency for the background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Profile heading */
+.profile-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007bff; /* Profile heading color */
+}
+
+/* Profile data */
+#profile-data {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#profile-data p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+/* Back to Home button */
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make the button full-width */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Logout button */
+#logout {
+    background-color: #e53e3e;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make logout button full-width */
+}
+
+#logout:hover {
+    background-color: #c53030;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    #logout {
+        width: 100%;
+    }
+
+    button {
+        width: 100%; /* Make the back button full-width on smaller screens */
+    }
+}

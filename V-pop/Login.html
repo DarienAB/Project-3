@@ -37,12 +37,13 @@
 
         // Firebase configuration
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyBGpja9qxVf16ukY7Hj0Namz_9GshdCjDw",
+            authDomain: "project-3-a37d4.firebaseapp.com",
+            projectId: "project-3-a37d4",
+            storageBucket: "project-3-a37d4.appspot.com",
+            messagingSenderId: "1031900863460",
+            appId: "1:1031900863460:web:028f2f8478862f968c85f1",
+            measurementId: "G-R86DWKXVM6"
         };
 
         // Initialize Firebase
@@ -57,12 +58,22 @@
             const password = document.getElementById('password').value;
 
             try {
+                // Attempt to log in the user
                 await signInWithEmailAndPassword(auth, email, password);
+
+                // Log success in console
                 console.log("User logged in:", email);
-                window.location.href = '/Dashboard'; // Redirect to dashboard after successful login
+
+                // Redirect to the homepage (index.html)
+                window.location.href = 'index.html';
             } catch (error) {
+                // Handle login errors
                 console.error("Login failed:", error.message);
-                document.getElementById('error-message').style.display = 'block';
+
+                // Show error message on the page
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = "Login failed: " + error.message;
             }
         });
     </script>
