@@ -26,43 +26,43 @@
         document.addEventListener("DOMContentLoaded", function () {
             const loginButton = document.getElementById("loginButton");
             const loginText = document.getElementById("loginText");
-
+    
             // Check if the user is logged in by looking in sessionStorage
             let isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
-
+    
             // If the user is logged in, redirect to home page (index.html) if on login page
             if (isLoggedIn && window.location.pathname.includes("Login.html")) {
                 window.location.href = "index.html"; // Redirect to home page
             }
-
+    
             // Update the button state and appearance on page load
             updateButtonState();
-
+    
             // Toggle login/logout state on button click
             loginButton.addEventListener("click", function (event) {
                 event.preventDefault(); // Prevent the default link behavior
-
+    
                 if (isLoggedIn) {
                     // Log out the user
                     sessionStorage.setItem("isLoggedIn", "false");
                     loginText.textContent = "Login"; // Change button text to 'Login'
                     loginButton.classList.remove("btn-danger");
                     loginButton.classList.add("btn-secondary");
-                    window.location.href = "index.html"; // Redirect to home after logout
+                    window.location.href = "Login.html"; // Redirect to login page after logout
                 } else {
                     // Log in the user (you can redirect to login page or validate credentials here)
                     sessionStorage.setItem("isLoggedIn", "true");
                     loginText.textContent = "Logout"; // Change button text to 'Logout'
                     loginButton.classList.remove("btn-secondary");
                     loginButton.classList.add("btn-danger");
-                    window.location.href = "Login.html"; // Redirect to login page
+                    window.location.href = "index.html"; // Redirect to home page after login
                 }
-
+    
                 // Toggle the login state and update the button accordingly
                 isLoggedIn = !isLoggedIn;
                 updateButtonState();
             });
-
+    
             // Function to update the button state and appearance
             function updateButtonState() {
                 if (isLoggedIn) {
@@ -76,8 +76,19 @@
                 }
             }
         });
-    </script>
-
+    </script>        
+    <!-- Dropdown Menu -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="About.html">About</a></li>
+            <li><a class="dropdown-item" href="Contact.html">Contact</a></li>
+            <li><a class="dropdown-item" href="FAQ.html">FAQ</a></li>
+        </ul>
+    </li>
+</ul>   
     <!-- Dispute Modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -335,6 +346,5 @@
 </div>
 
 <!-- Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+
 </html>

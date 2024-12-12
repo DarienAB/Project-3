@@ -53,29 +53,34 @@
         // Handle form submission for login
         document.getElementById('login-form').addEventListener('submit', async function(event) {
             event.preventDefault();
-
+        
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
+        
             try {
                 // Attempt to log in the user
-                await signInWithEmailAndPassword(auth, email, password);
-
-                // Log success in console
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        
+                // Get the user's UID
+                const user = userCredential.user;
+                const uid = user.uid;
+        
+                // Store UID in sessionStorage
+                sessionStorage.setItem('uid', uid);
+        
                 console.log("User logged in:", email);
-
-                // Redirect to the homepage (index.html)
-                window.location.href = 'index.html';
+        
+                // Redirect to the profile page
+                window.location.href = 'profile.html';
             } catch (error) {
-                // Handle login errors
                 console.error("Login failed:", error.message);
-
-                // Show error message on the page
+        
+                // Show error message
                 const errorMessage = document.getElementById('error-message');
                 errorMessage.style.display = 'block';
                 errorMessage.textContent = "Login failed: " + error.message;
             }
-        });
+        });        
     </script>
 </body>
 </html>
